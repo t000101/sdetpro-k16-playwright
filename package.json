@@ -1,0 +1,9 @@
+{
+  "name": "sdetprod-k16-playwright",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@playwright/test": "^1.52.0"
+  }
+}
