@@ -9,6 +9,7 @@ export default defineConfig({
         }
     ],
     use: {
-        headless: false
+        headless: false,
+        baseURL: 'https://playwright.dev/',
     }
 })
