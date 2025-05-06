@@ -10,6 +10,7 @@ export default defineConfig({
     ],
     use: {
         headless: false,
-        baseURL: 'https://playwright.dev/',
+        baseURL: 'https://the-internet.herokuapp.com/',
+        actionTimeout: 5 * 1000,
     }
 })
