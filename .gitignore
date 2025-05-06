@@ -1,1 +1,5 @@
+# Ignore local installed dependencies
 node_modules
+
+# Ignore test results
+test-results
