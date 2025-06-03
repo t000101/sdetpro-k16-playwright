@@ -14,8 +14,24 @@ export default class FooterColumnComponent {
         return await this.component.locator(this.titleSelector).innerText();
     }
 
-    async getLinkListt(): Promise<string[]> {
+    async getTexts(): Promise<string[]> {
+        const linkListTexts: string[] = [];
         const linkList = await this.component.locator(this.linkSelector).all();
-        return Promise.all(linkList.map(link => link.innerText()));
+        for (const link of linkList) {
+            const linkText = await link.textContent();
+            linkListTexts.push(linkText || '');
+        }
+        // return Promise.all(linkList.map(link => link.innerText()));
+        return linkListTexts;
+    }
+
+    async getLinkList(): Promise<string[]> {
+        const hrefList: string[] = [];
+        const linkList = await this.component.locator(this.linkSelector).all();
+        for (const link of linkList) {
+            const href = await link.getAttribute('href');
+            hrefList.push(href || '');
+        }
+        return hrefList;
     }
 }

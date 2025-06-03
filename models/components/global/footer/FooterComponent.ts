@@ -1,6 +1,8 @@
 import { Locator } from "@playwright/test";
 import InformationColumnComponent from "./InformationColumnComponent";
 import CustomerServiceColumnComponent from "./CustomerSerrviceColumnComponent";
+import MyAccountColumnComponent from "./MyAccountColumnComponent";
+import FollowUsColumnComponent from "./FollowUsColumnComponent";
 
 export default class FooterComponent {
 
@@ -14,6 +16,14 @@ export default class FooterComponent {
 
     public customerServiceColumnComp(): CustomerServiceColumnComponent {
         return new CustomerServiceColumnComponent(this.component.locator(CustomerServiceColumnComponent.LOCATOR));
+    }
+
+    public myAccountColumnComp(): MyAccountColumnComponent {
+        return new MyAccountColumnComponent(this.component.locator(MyAccountColumnComponent.LOCATOR));
+    }
+
+    public followUsColumnComp(): FollowUsColumnComponent {
+        return new FollowUsColumnComponent(this.component.locator(FollowUsColumnComponent.LOCATOR));
     }
 
     public async powerByText(): Promise<string> {
