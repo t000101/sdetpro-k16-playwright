@@ -1,5 +1,5 @@
 import { Locator } from "@playwright/test";
-import ProductEssentialComponent from "../global/footer/ProductEssentialComponent";
+import ProductEssentialComponent from "../global/ProductEssentialComponent";
 
 export abstract class ComputerEssentialComponent extends ProductEssentialComponent{
     constructor(component: Locator) {

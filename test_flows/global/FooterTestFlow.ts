@@ -1,5 +1,5 @@
 import { expect, Page } from "@playwright/test";
-import FooterColumnComponent from "../../models/components/global/footer/FooterColumnComponent";
+import FooterColumnComponent from "../../models/components/global/footer/columns/FooterColumnComponent";
 import FooterComponent from "../../models/components/global/footer/FooterComponent";
 import HomePage from "../../models/pages/HomePage";
 import { deepStrictEqual } from 'assert';
@@ -33,7 +33,7 @@ export default class FooterTestFlow {
         await this.verifyFooterColumnComponent(customerServiceColumnComp, extectedTexts, expectedHrefs);
     }
 
-     async verifyMyAccountColumnComponent(footerComponent: FooterComponent) {
+    async verifyMyAccountColumnComponent(footerComponent: FooterComponent) {
         const myAccountColumnComp = footerComponent.myAccountColumnComp();
         const extectedTexts = ['My account', 'Orders', 'Addresses', 'Shopping cart', 'Wishlist'];
         const expectedHrefs = ['/customer/info', '/customer/orders', '/customer/addresses', '/cart', '/wishlist'];
@@ -41,7 +41,7 @@ export default class FooterTestFlow {
         await this.verifyFooterColumnComponent(myAccountColumnComp, extectedTexts, expectedHrefs);
     }
 
-     async verifyFollowUsColumnComponent(footerComponent: FooterComponent) {
+    async verifyFollowUsColumnComponent(footerComponent: FooterComponent) {
         const followUsColumnComp = footerComponent.followUsColumnComp();
         const extectedTexts = ['Facebook', 'Twitter', 'RSS', 'YouTube', 'Google+'];
         const expectedHrefs = ['http://www.facebook.com/nopCommerce', 'https://twitter.com/nopCommerce', '/news/rss/1', 'http://www.youtube.com/user/nopCommerce', 'https://plus.google.com/+nopcommerce'];

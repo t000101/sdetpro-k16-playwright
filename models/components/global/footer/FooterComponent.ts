@@ -1,8 +1,8 @@
 import { Locator } from "@playwright/test";
-import InformationColumnComponent from "./InformationColumnComponent";
-import CustomerServiceColumnComponent from "./CustomerSerrviceColumnComponent";
-import MyAccountColumnComponent from "./MyAccountColumnComponent";
-import FollowUsColumnComponent from "./FollowUsColumnComponent";
+import InformationColumnComponent from "./columns/InformationColumnComponent";
+import CustomerServiceColumnComponent from "./columns/CustomerSerrviceColumnComponent";
+import MyAccountColumnComponent from "./columns/MyAccountColumnComponent";
+import FollowUsColumnComponent from "./columns/FollowUsColumnComponent";
 
 export default class FooterComponent {
 
