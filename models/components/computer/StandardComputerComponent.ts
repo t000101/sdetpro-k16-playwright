@@ -3,7 +3,7 @@ import { ComputerEssentialComponent } from "./ComputerEssentialComponent";
 
 export default class StandardComputerComponent extends ComputerEssentialComponent {
 
-    private allDropdownSelector = 'select[id^=="product_attribute"]';
+    private allDropdownSelector: string = 'select[id^="product_attribute"]';
 
     constructor(component: Locator) {
         super(component);
@@ -11,7 +11,8 @@ export default class StandardComputerComponent extends ComputerEssentialComponen
 
     public async selectRAM(value: string) {
         const RAM_DROP_DOWN_INDEX: number = 1;
-        const ramDropdown: Locator = await this.component.locator(this.allDropdownSelector).all()[RAM_DROP_DOWN_INDEX];
+        const allDropdown: Locator[] = await this.component.locator(this.allDropdownSelector).all();
+        const ramDropdown = allDropdown[RAM_DROP_DOWN_INDEX];
         const allOptionLocators: Locator[] = await ramDropdown.locator('option').all();
         let optionIndex: number = -1;
         let optionFullText: string | null = '';
