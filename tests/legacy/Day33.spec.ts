@@ -1,9 +1,9 @@
 import test from "@playwright/test";
-import { ComputerEssentialComponent } from "../models/components/computer/ComputerEssentialComponent";
-import CheapComputerComponent from "../models/components/computer/CheapComputerComponent";
-import StandardComputerComponent from "../models/components/computer/StandardComputerComponent";
-import { ComputerDetailsPage } from "../models/pages/ComputerDetailsPage";
-import CustomerServiceColumnComponent from "../models/components/global/footer/CustomerSerrviceColumnComponent";
+import { ComputerEssentialComponent } from "../../models/components/computer/ComputerEssentialComponent";
+import CheapComputerComponent from "../../models/components/computer/CheapComputerComponent";
+import StandardComputerComponent from "../../models/components/computer/StandardComputerComponent";
+import { ComputerDetailsPage } from "../../models/pages/ComputerDetailsPage";
+import CustomerServiceColumnComponent from "../../models/components/global/footer/CustomerSerrviceColumnComponent";
 
 /**
  * 1. Seperate different components and use

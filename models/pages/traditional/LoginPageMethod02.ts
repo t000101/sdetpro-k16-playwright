@@ -1,5 +1,5 @@
 import { Locator, Page } from "@playwright/test";
-import { LoginCreds } from "../../../types/DataTypes";
+import { LoginCreds } from "../../../test_data/computer/LoginDataType";
 
 export default class LoginPageMethod01 {
 

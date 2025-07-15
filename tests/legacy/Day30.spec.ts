@@ -1,8 +1,8 @@
 import test from "@playwright/test";
-import LoginPageMethod01 from "../models/pages/traditional/LoginPageMethod01.ts";
-import { LoginCreds } from "../types/DataTypes.ts";
-import LoginPageMethod02 from "../models/pages/traditional/LoginPageMethod02.ts";
-import HomePage from "../models/pages/HomePage.ts";
+import LoginPageMethod01 from "../../models/pages/traditional/LoginPageMethod01.ts";
+import { LoginCreds } from "../../test_data/computer/LoginDataType.ts";
+import LoginPageMethod02 from "../../models/pages/traditional/LoginPageMethod02.ts";
+import HomePage from "../../models/pages/HomePage.ts";
 import FooterComponent from "../models/components/global/FooterComponent.ts";
 
 const loginCreds: LoginCreds = {

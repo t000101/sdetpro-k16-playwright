@@ -1,6 +1,6 @@
 import { expect, Page, test } from '@playwright/test';
-import { getAdvertisingParams } from '../utils/AdUtils';
-import { scrollToBottom } from '../utils/PageUtils';
+import { getAdvertisingParams } from '../../utils/AdUtils';
+import { scrollToBottom } from '../../utils/PageUtils';
 
 test.describe('Handle JS Alert', () => {
     test('Handle JS Alert', async ({ page }) => {
