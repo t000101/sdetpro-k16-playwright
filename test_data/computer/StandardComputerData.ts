@@ -6,5 +6,6 @@ export const standardComputerData: ComputerDataType = {
     processorType: "2.2 GHz",
     ram: "8GB",
     hdd: "400 GB", 
-    software: "Microsoft Office"
+    software: "Microsoft Office",
+    os: "Windows 7"
 }

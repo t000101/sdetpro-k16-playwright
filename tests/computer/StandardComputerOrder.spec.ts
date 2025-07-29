@@ -7,4 +7,5 @@ test('Standard Computer Component Test', async ({ page }) => {
     await page.goto('/build-your-own-computer');
     const orderComputerFlow = new OrderComputerFlow(page, standardComputerData);
     await orderComputerFlow.buildComputerSpecAndAddToCart();
+    await orderComputerFlow.verifyShoppingCart();
 });

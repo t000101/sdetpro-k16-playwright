@@ -6,5 +6,5 @@ export const cheapComputerData: ComputerDataType = {
     processorType: "Fast",
     ram: "8 GB",
     hdd: "400 GB", 
-    software: "Image Viewer"
+    software: "Image Viever"
 }
