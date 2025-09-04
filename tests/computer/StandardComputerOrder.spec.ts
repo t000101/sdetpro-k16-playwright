@@ -8,4 +8,6 @@ test('Standard Computer Component Test', async ({ page }) => {
     const orderComputerFlow = new OrderComputerFlow(page, standardComputerData);
     await orderComputerFlow.buildComputerSpecAndAddToCart();
     await orderComputerFlow.verifyShoppingCart();
+    await orderComputerFlow.agreeTosAndCheckout();
+    await orderComputerFlow.inputBillingAddress();
 });

@@ -9,4 +9,6 @@ test('Cheap Computer Component Test', async ({ page }) => {
     const orderComputerFlow = new OrderComputerFlow(page, cheapComputerData);
     await orderComputerFlow.buildComputerSpecAndAddToCart();
     await orderComputerFlow.verifyShoppingCart();
+    await orderComputerFlow.agreeTosAndCheckout();
+    await orderComputerFlow.inputBillingAddress();
 });
