@@ -4,10 +4,12 @@ import { ComputerDetailsPage } from "../../models/pages/ComputerDetailsPage";
 import ShoppingCartPage from "../../models/pages/ShoppingCartPage";
 import CheckOutOptionPage from "../../models/pages/CheckOutOptionPage";
 import defautCheckoutUser from "../../test_data/DefaultCheckoutUser.json";
+import defaultCheckoutCard from "../../test_data/DefaultCheckoutCard.json";
 import CheckOutPage from "../../models/pages/CheckOutPage";
 
 export class OrderComputerFlow {
     private totalPrice: number = 0;
+    private shippingFee: number = 0;
 
     constructor(private page: Page, private computerData: ComputerDataType) {
         this.page = page;
@@ -45,8 +47,9 @@ export class OrderComputerFlow {
         this.totalPrice = (basePrice + additionalPrice) * (quantity ? quantity : 1);
 
         // Add to cart and wait for event
-        const requestSlug = await computerComponent.clickOnAddToCartBtn();
-        await this.page.waitForResponse(requestSlug);
+        await computerComponent.clickOnAddToCartBtn();
+        // const requestSlug = await computerComponent.clickOnAddToCartBtn();
+        // await this.page.waitForResponse(requestSlug);
 
         // Navigate to shoppingCart page
         await computerDetailsPage.headerComponent().clickOnShoppingCartLink();
@@ -88,7 +91,7 @@ export class OrderComputerFlow {
         await totalsComponent.clickOnCheckoutBtn();
         await new CheckOutOptionPage(this.page).clickOnCheckOutAsGuestBtn();
     }
-    
+
     public async inputBillingAddress() {
         const { firstName,
             lastName,
@@ -100,7 +103,7 @@ export class OrderComputerFlow {
             zipCode,
             phoneNum
         } = defautCheckoutUser;
-        
+
         const checkoutPage = new CheckOutPage(this.page);
         const billingAddressComponent = checkoutPage.billingAddressComponent();
         await billingAddressComponent.inputFirstName(firstName);
@@ -113,7 +116,56 @@ export class OrderComputerFlow {
         await billingAddressComponent.inputZipCode(zipCode);
         await billingAddressComponent.inputPhoneNum(phoneNum);
         await billingAddressComponent.clickOnContinueBtn();
-        throw new Error('Show case to handle new opened');
+    }
+
+    public async inputShippingAddress() {
+        const checkoutPage = new CheckOutPage(this.page);
+        const shippingAddressComponent = checkoutPage.shippingAddressComponent();
+        await shippingAddressComponent.waitForComponentVisible();
+        await shippingAddressComponent.clickOnContinueBtn();
+    }
+
+    public async selectShippingMethod() {
+        const checkoutPage = new CheckOutPage(this.page);
+        const shippingMethodComponent = checkoutPage.shippingMethodComponent();
+        await shippingMethodComponent.waitForAllShippingMethodSelVisible();
+        const allShippingMethodSel = await shippingMethodComponent.getAllShippingMethodsLocs();
+        const randomIndex = Math.floor(Math.random() * allShippingMethodSel.length);
+        const randomShippingMethodLoc = allShippingMethodSel[randomIndex];
+        await randomShippingMethodLoc.click();
+        const shippingMethodFullText = await randomShippingMethodLoc.innerText();
+        this.shippingFee = this.getAditionalPrice(shippingMethodFullText);
+        console.log(`shippingMethodFullText: ${shippingMethodFullText}`);
+        console.log(`shippingFee: ${this.shippingFee}`);
+        await shippingMethodComponent.waitForContinueBtnSelVisible();
+        await shippingMethodComponent.clickOnContinueBtn();
+    }
+
+    public async selectPaymentMethod() {
+        const checkoutPage = new CheckOutPage(this.page);
+        const paymentMethodComponent = checkoutPage.paymentMethodComponent();
+        await paymentMethodComponent.selectPaymentMethod("Credit");
+        await paymentMethodComponent.clickOnContinueBtn();
+    }
+
+    public async inputPaymentInformation() {
+        const checkoutPage = new CheckOutPage(this.page);
+        const paymentInformationComponent = checkoutPage.paymentInformationComponent();
+        const { firstName, lastName } = defautCheckoutUser;
+        const { cardNumber, expirationMonth, expirationYear, cardCode} = defaultCheckoutCard.discover;
+        await paymentInformationComponent.selectCreditCard('Discover');
+        await paymentInformationComponent.inputCardHolder(`${firstName} ${lastName}`);
+        await paymentInformationComponent.inputCardNumber(cardNumber);
+        await paymentInformationComponent.selectExpirationMonth(expirationMonth);
+        await paymentInformationComponent.selectExpirationYear(expirationYear);
+        await paymentInformationComponent.inputCardCode(cardCode);
+        await paymentInformationComponent.clickOnContinueBtn();
+    }
+
+    public async confirmOrder() {
+        const checkoutPage = new CheckOutPage(this.page);
+        const confirmOrderComponent = checkoutPage.confirmOrderComponent();
+        await confirmOrderComponent.clickOnContinueBtn();
     }
 
     private getAditionalPrice(optionFullText: string | null): number {

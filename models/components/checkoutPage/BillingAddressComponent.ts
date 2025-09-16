@@ -31,11 +31,11 @@ export default class BillingAddressComponent {
     }
 
     public async selectCountry(value: string): Promise<void> {
-        await this.component.locator(this.selectCountryDropdownSel).selectOption({label: value});
+        await this.component.locator(this.selectCountryDropdownSel).selectOption({ label: value });
     }
 
     public async selectState(value: string): Promise<void> {
-        await this.component.locator(this.selectStateDropdownSel).selectOption({label: value});
+        await this.component.locator(this.selectStateDropdownSel).selectOption({ label: value });
     }
 
     public async inputCity(value: string): Promise<void> {
@@ -54,7 +54,7 @@ export default class BillingAddressComponent {
         await this.component.locator(this.phoneNumSel).fill(value);
     }
 
-    public async clickOnContinueBtn(value: string): Promise<void> {
+    public async clickOnContinueBtn(): Promise<void> {
         await this.component.locator(this.continueBtnSel).click();
     }
 }
